@@ -15,11 +15,6 @@
       </el-menu>
       <el-main>
         <router-view/>
-        <el-pagination
-          background
-          layout="prev, pager, next"
-          :total="5">
-        </el-pagination>
       </el-main>
       <el-footer>footer</el-footer>
     </el-container>

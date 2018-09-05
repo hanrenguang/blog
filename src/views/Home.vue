@@ -3,6 +3,11 @@
     <template v-for="post in posts">
       <PostItem :post="post" :key="post.id"></PostItem>
     </template>
+    <el-pagination
+      background
+      layout="prev, pager, next"
+      :total="5">
+    </el-pagination>
   </div>
 </template>
 
