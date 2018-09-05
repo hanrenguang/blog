@@ -6,7 +6,8 @@
 
 <script>
 export default {
-  data() {
+  name: 'Post',
+  data () {
     return {
       content: [
         'post0',

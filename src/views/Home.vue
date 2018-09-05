@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <template v-for="post in posts">
-      <PostItem :post="post"></PostItem>
+      <PostItem :post="post" :key="post.id"></PostItem>
     </template>
   </div>
 </template>
@@ -10,7 +10,8 @@
 import PostItem from '@/components/PostItem.vue'
 
 export default {
-  data() {
+  name: 'Home',
+  data () {
     return {
       posts: [
         {

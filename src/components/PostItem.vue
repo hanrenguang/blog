@@ -10,11 +10,16 @@
 import router from '@/router.js'
 
 export default {
+  name: 'PostItem',
   props: ['post'],
   methods: {
-    goPost(postId) {
-      router.push({path: `post/${postId}`})
+    goPost (postId) {
+      router.push({ path: `post/${postId}` })
     }
   }
 }
 </script>
+
+<style scoped>
+
+</style>
