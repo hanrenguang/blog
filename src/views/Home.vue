@@ -28,6 +28,16 @@ export default {
           id: 2,
           brief: 'post2 brief',
           title: 'post2'
+        },
+        {
+          id: 3,
+          brief: 'post3 brief',
+          title: 'post3'
+        },
+        {
+          id: 4,
+          brief: 'post4 brief',
+          title: 'post4'
         }
       ]
     }

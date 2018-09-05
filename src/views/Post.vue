@@ -12,7 +12,9 @@ export default {
       content: [
         'post0',
         'post1',
-        'post2'
+        'post2',
+        'post3',
+        'post4'
       ]
     }
   }
