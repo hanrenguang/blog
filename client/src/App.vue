@@ -26,7 +26,7 @@ export default {
   name: 'app',
   data () {
     return {
-      activeIndex: '/'
+      activeIndex: window.location.pathname
     }
   }
 }
