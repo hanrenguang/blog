@@ -18,34 +18,14 @@ export default {
   name: 'Home',
   data () {
     return {
-      posts: [
-        {
-          id: 0,
-          brief: 'post0 brief',
-          title: 'post0'
-        },
-        {
-          id: 1,
-          brief: 'post1 brief',
-          title: 'post1'
-        },
-        {
-          id: 2,
-          brief: 'post2 brief',
-          title: 'post2'
-        },
-        {
-          id: 3,
-          brief: 'post3 brief',
-          title: 'post3'
-        },
-        {
-          id: 4,
-          brief: 'post4 brief',
-          title: 'post4'
-        }
-      ]
+      posts: []
     }
+  },
+  created () {
+    this.axios.get('http://localhost:3000/')
+      .then((res) => {
+        this.posts = res.data
+      })
   },
   components: {
     PostItem
