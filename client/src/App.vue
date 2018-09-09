@@ -32,7 +32,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 #app {
   width: 100%;
   height: 100%;
@@ -42,29 +42,29 @@ export default {
   font-size: 1.2rem;
   text-align: center;
   color: #2c3e50;
-}
-#app .el-container {
-  width: 100%;
-  min-height: 100%;
-}
-#app .el-menu {
-  padding-left: 2rem;
-  font-size: 1.4rem;
-}
-#app .el-main {
-  padding: 0;
-  margin: 20px 0 30px 0;
-  min-height: 100%;
-  font-size: 1.4rem;
-}
-#app .el-pagination {
-  margin-top: 30px;
-}
-#app .el-footer {
-  width: 100%;
-  height: 60px;
-  line-height: 60px;
-  background-color: #545c64;
-  color: #fff;
+  .el-container {
+    width: 100%;
+    min-height: 100%;
+  }
+  .el-menu {
+    padding-left: 2rem;
+    font-size: 1.4rem;
+  }
+  .el-main {
+    padding: 0;
+    margin: 20px 0 30px 0;
+    min-height: 100%;
+    font-size: 1.4rem;
+  }
+  .el-pagination {
+    margin-top: 30px;
+  }
+  .el-footer {
+    width: 100%;
+    height: 60px;
+    line-height: 60px;
+    background-color: #545c64;
+    color: #fff;
+  }
 }
 </style>
