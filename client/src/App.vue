@@ -52,8 +52,10 @@ export default {
   }
   .el-main {
     padding: 0;
-    margin: 20px 0 30px 0;
+    margin: 20px auto;
+    width: 100%;
     min-height: 100%;
+    max-width: 700px;
     font-size: 1.4rem;
   }
   .el-pagination {

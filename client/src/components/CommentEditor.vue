@@ -1,19 +1,58 @@
 <template>
   <div class="edit-box">
-    <textarea name="comment" cols="30" rows="5"></textarea>
-    <el-button type="primary">提交</el-button>
+    <textarea name="comment" class="comment-content"></textarea>
+    <el-row>
+      <el-col :span="4">
+        <div class="grid-content bg-purple">
+          <span>昵称：</span>
+        </div>
+      </el-col>
+      <el-col :span="20">
+        <div class="grid-content bg-purple-light">
+          <el-input v-model="name" placeholder="请输入昵称" class="input-name"></el-input>
+        </div>
+      </el-col>
+    </el-row>
+    <el-button type="primary" class="submit-comment">提交</el-button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'CommentEditor'
+  name: 'CommentEditor',
+  data () {
+    return {
+      name: ''
+    }
+  }
 }
 </script>
 
 <style scoped lang="scss">
-textarea {
-  display: block;
-  margin: 1rem auto;
+.edit-box {
+  box-sizing: border-box;
+  margin-top: 50px;
+  padding: 10px 10px 20px 10px;
+  width: 100%;
+  border-top: 1px solid #bbb;
+  textarea {
+    box-sizing: border-box;
+    display: block;
+    margin: 1rem auto;
+    padding: 5px;
+    width: 100%;
+    height: 100px;
+    border-radius: 5px;
+    font-size: 16px;
+    resize: none;
+  }
+  .el-row span {
+    line-height: 40px;
+  }
+  .submit-comment {
+    margin-top: 10px;
+    width: 100px;
+    font-size: 16px;
+  }
 }
 </style>

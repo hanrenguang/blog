@@ -7,14 +7,17 @@ let posts = [
     comments: [
       {
         comment: '评论1',
+        people: 'hhh',
         date: '2018.09.06'
       },
       {
         comment: '评论2',
+        people: 'hhh',
         date: '2018.09.06'
       },
       {
         comment: '评论3',
+        people: 'hhh',
         date: '2018.09.06'
       }
     ]
