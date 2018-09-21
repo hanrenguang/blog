@@ -16,7 +16,7 @@
       <el-main>
         <router-view/>
       </el-main>
-      <el-footer>footer</el-footer>
+      <el-footer>Nothing to display!</el-footer>
     </el-container>
   </div>
 </template>
