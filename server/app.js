@@ -12,7 +12,7 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
 
-app.use('/', homeRouter)
+app.use(homeRouter)
 app.use(postRouter)
 app.use(klassRouter)
 
