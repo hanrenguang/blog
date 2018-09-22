@@ -31,14 +31,6 @@ export default {
       .catch((err) => {
         console.log(err)
       })
-
-    this.axios.post('http://localhost:3000/user')
-      .then((res) => {
-        console.log(res.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
   },
   components: {
     PostItem

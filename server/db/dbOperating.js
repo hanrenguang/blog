@@ -9,12 +9,31 @@ module.exports = {
     pool.getConnection((err, connection) => {
       if (err) throw err
 
-      connection.query('SELECT username,password FROM user', (err, results, field) => {
-        console.log(results)
-        connection.release()
-        res.send('hhh')
+      connection.query('SELECT password FROM user WHERE username=?', [req.body.username], (err, results, field) => {
         if (err) throw err
+
+        if (!results[0]) {
+          res.send({
+            status: 0,
+            msg: '用户不存在！'
+          })
+        } else if (results[0].password === req.body.password) {
+          res.send({
+            status: 1
+          })
+        } else {
+          res.send({
+            status: 0,
+            msg: '密码错误！'
+          })
+        }
+
+        connection.release()
       })
     })
+  },
+  // get postlist
+  getPostList (num, page) {
+
   }
 }
