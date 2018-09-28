@@ -1,21 +1,14 @@
 <template>
   <div class="comment-item">
     <div class="comment-info">
-      <span class="name">{{ comment.people }}</span>
+      <span class="name">{{ comment.name }}</span>
       <span class="time">{{ comment.date }}</span>
     </div>
     <div class="content">
-      {{ comment.comment }}
+      {{ comment.content }}
     </div>
   </div>
 </template>
-
-<script>
-export default {
-  name: 'CommentItem',
-  props: ['comment']
-}
-</script>
 
 <style scoped lang="scss">
 .comment-item {
@@ -38,3 +31,10 @@ export default {
   }
 }
 </style>
+
+<script>
+export default {
+  name: 'CommentItem',
+  props: ['comment']
+}
+</script>

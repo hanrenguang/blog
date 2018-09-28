@@ -1,6 +1,10 @@
 <template>
   <div class="edit-box">
-    <textarea name="comment" class="comment-content"></textarea>
+    <textarea
+      name="comment"
+      class="comment-content"
+      v-model="comment">
+    </textarea>
     <el-row>
       <el-col :span="4">
         <div class="grid-content bg-purple">
@@ -16,17 +20,6 @@
     <el-button type="primary" class="submit-comment">提交</el-button>
   </div>
 </template>
-
-<script>
-export default {
-  name: 'CommentEditor',
-  data () {
-    return {
-      name: ''
-    }
-  }
-}
-</script>
 
 <style scoped lang="scss">
 .edit-box {
@@ -56,3 +49,15 @@ export default {
   }
 }
 </style>
+
+<script>
+export default {
+  name: 'CommentEditor',
+  data () {
+    return {
+      name: '',
+      comment: ''
+    }
+  }
+}
+</script>

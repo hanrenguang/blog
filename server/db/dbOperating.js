@@ -78,5 +78,19 @@ module.exports = {
         connection.release()
       })
     })
+  },
+  // get comment detail
+  getCommentDetail (req, res, next) {
+    pool.getConnection((err, connection) => {
+      if (err) throw err
+
+      connection.query('SELECT * FROM comments WHERE pid=?', [req.body.postId], (err, results, field) => {
+        if (err) throw err
+
+        res.send(results)
+
+        connection.release()
+      })
+    })
   }
 }

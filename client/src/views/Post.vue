@@ -2,7 +2,7 @@
   <div id="post">
     {{ postInfo.content }}
     <CommentEditor></CommentEditor>
-    <template v-for="(comment, index) in postInfo.comments">
+    <template v-for="(comment, index) in comments">
       <CommentItem :comment="comment" :key="index"></CommentItem>
     </template>
   </div>
@@ -16,7 +16,8 @@ export default {
   name: 'Post',
   data () {
     return {
-      postInfo: {}
+      postInfo: {},
+      comments: []
     }
   },
   created () {
@@ -24,6 +25,14 @@ export default {
       postId: this.$route.params.id
     }).then((res) => {
       this.postInfo = res.data
+    }).catch((err) => {
+      console.log(err)
+    })
+
+    this.axios.post('http://localhost:3000/getCommentDetail', {
+      postId: this.$route.params.id
+    }).then((res) => {
+      this.comments = res.data
     }).catch((err) => {
       console.log(err)
     })
