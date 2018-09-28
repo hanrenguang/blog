@@ -20,8 +20,8 @@ export default {
     }
   },
   created () {
-    this.axios.post('http://localhost:3000/post', {
-      post_id: this.$route.params.id
+    this.axios.post('http://localhost:3000/getPostDetail', {
+      postId: this.$route.params.id
     }).then((res) => {
       this.postInfo = res.data
     }).catch((err) => {

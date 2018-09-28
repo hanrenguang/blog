@@ -1,6 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const bodyParser = require('body-parser')
+const session = require('express-session')
 const app = express()
 
 const homeRouter = require('./routes/home.js')
@@ -11,6 +12,16 @@ app.use(cors())
 
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())
+
+// app.use(session({
+//   secret: 'hrg blog',
+//   resave: false,
+//   saveUninitialized: true,
+//   cookie: {
+//     secure: true,
+//     maxAge: 3600000
+//   }
+// }))
 
 app.use(homeRouter)
 app.use(postRouter)

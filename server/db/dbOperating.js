@@ -18,6 +18,7 @@ module.exports = {
             msg: '用户不存在！'
           })
         } else if (results[0].password === req.body.password) {
+          // req.session.userName = req.body.username
           res.send({
             status: 1
           })
@@ -33,7 +34,49 @@ module.exports = {
     })
   },
   // get postlist
-  getPostList (num, page) {
+  getPostList (req, res, next) {
+    pool.getConnection((err, connection) => {
+      if (err) throw err
 
+      connection.query('SELECT * FROM posts limit ?,?', [req.body.num * (req.body.page - 1), req.body.num], (err, results, field) => {
+        if (err) throw err
+
+        res.send(results)
+
+        connection.release()
+      })
+    })
+  },
+  // get page count
+  getPageCount (req, res, next) {
+    pool.getConnection((err, connection) => {
+      if (err) throw err
+
+      connection.query('SELECT count(*) FROM posts', [], (err, results, field) => {
+        if (err) throw err
+
+        let pageCount = Math.ceil(results[0]['count(*)'] / req.body.num) === 0 ? 1 : Math.ceil(results[0]['count(*)'] / req.body.num)
+
+        res.send({
+          page_count: pageCount
+        })
+
+        connection.release()
+      })
+    })
+  },
+  // get post detail
+  getPostDetail (req, res, next) {
+    pool.getConnection((err, connection) => {
+      if (err) throw err
+
+      connection.query('SELECT * FROM posts WHERE id=?', [req.body.postId], (err, results, field) => {
+        if (err) throw err
+
+        res.send(results[0])
+
+        connection.release()
+      })
+    })
   }
 }

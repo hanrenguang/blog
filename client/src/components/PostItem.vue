@@ -1,6 +1,6 @@
 <template>
   <div class="post-item">
-    <p class="title">{{ post.title }}</p>
+    <p class="title">{{ post.test }}</p>
     <p class="brief">{{ post.brief }}</p>
     <a href="javascript:;" @click="goPost(post.id)">read more</a>
   </div>
