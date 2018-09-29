@@ -24,12 +24,17 @@ export default new Router({
     {
       path: '/classification',
       name: 'classification',
-      component: () => import(/* webpackChunkName: "about" */ './views/Classification.vue')
+      component: () => import(/* webpackChunkName: "classification" */ './views/Classification.vue')
     },
     {
       path: '/post/:id',
       name: 'post',
-      component: () => import(/* webpackChunkName: "about" */ './views/Post.vue')
+      component: () => import(/* webpackChunkName: "post" */ './views/Post.vue')
+    },
+    {
+      path: '/editPost',
+      name: 'editPost',
+      component: () => import(/* webpackChunkName: "editpost" */ './views/EditPost.vue')
     }
   ]
 })

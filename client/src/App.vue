@@ -12,6 +12,7 @@
         <el-menu-item index="/">首页</el-menu-item>
         <el-menu-item index="/classification">分类</el-menu-item>
         <el-menu-item index="/about">关于我</el-menu-item>
+        <el-menu-item index="/editPost" v-show="hasLogin">新文章</el-menu-item>
         <el-button
           type="primary"
           @click="dialogVisible = true"
