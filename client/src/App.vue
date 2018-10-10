@@ -8,7 +8,7 @@
         mode="horizontal"
         background-color="#545c64"
         text-color="#fff"
-        active-text-color="#409EFF">
+        active-text-color="#3a8ee6">
         <el-menu-item index="/">首页</el-menu-item>
         <el-menu-item index="/classification">分类</el-menu-item>
         <el-menu-item index="/about">关于我</el-menu-item>
@@ -25,7 +25,7 @@
       <el-main>
         <router-view/>
       </el-main>
-      <el-footer>Nothing to display!</el-footer>
+      <el-footer>这是个页脚</el-footer>
     </el-container>
     <el-dialog
       title="登录"
@@ -158,6 +158,18 @@ export default {
 
       this.dialogVisible = false
     }
+  },
+  created () {
+    this.axios.post('http://localhost:3000/isLogin')
+      .then((res) => {
+        if (res.data.status === 1) {
+          this.hasLogin = true
+          this.userName = res.data.username
+        }
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }
 }
 </script>

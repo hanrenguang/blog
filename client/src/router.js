@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Home from './views/Home.vue'
+import axios from 'axios'
 
 Vue.use(Router)
 
@@ -34,7 +35,25 @@ export default new Router({
     {
       path: '/editPost',
       name: 'editPost',
-      component: () => import(/* webpackChunkName: "editpost" */ './views/EditPost.vue')
+      component: () => import(/* webpackChunkName: "editpost" */ './views/EditPost.vue'),
+      beforeEnter (to, from, next) {
+        if (to.name === 'editPost') {
+          axios.post('http://localhost:3000/isLogin')
+            .then((res) => {
+              if (res.data.status === 1) {
+                next()
+              } else {
+                next('/')
+              }
+            })
+            .catch((err) => {
+              console.log(err)
+              next('/')
+            })
+        } else {
+          next()
+        }
+      }
     }
   ]
 })

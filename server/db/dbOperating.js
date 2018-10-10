@@ -18,7 +18,7 @@ module.exports = {
             msg: '用户不存在！'
           })
         } else if (results[0].password === req.body.password) {
-          // req.session.userName = req.body.username
+          req.session.userName = req.body.username
           res.send({
             status: 1
           })
@@ -91,6 +91,80 @@ module.exports = {
 
         connection.release()
       })
+    })
+  },
+  // create post
+  createPost (req, res, next) {
+    let categoryId = void 0
+    let userId = void 0
+
+    Promise.all([
+      new Promise((resolve, reject) => {
+        pool.getConnection((err, connection) => {
+          if (err) reject(err)
+
+          connection.query('SELECT * FROM category WHERE name=?', [req.body.classification], (err, results) => {
+            if (results.length === 0) {
+              connection.query('INSERT INTO category (name) VALUES(?)', [req.body.classification], (err, results, field) => {
+                if (err) reject(err)
+
+                categoryId = results.insertId
+                resolve()
+              })
+            } else {
+              categoryId = results[0].id
+              resolve()
+            }
+          })
+
+          connection.release()
+        })
+      }),
+      new Promise((resolve, reject) => {
+        pool.getConnection((err, connection) => {
+          if (err) reject(err)
+
+          connection.query('SELECT id FROM user WHERE username=?', [req.session.userName], (err, results) => {
+            if (err) reject(err)
+            
+            userId = results[0].id
+            resolve()
+          })
+
+          connection.release()
+        })
+      })
+    ])
+    .then(val => {
+      pool.getConnection((err, connection) => {
+        if (err) throw err
+
+        connection.query('INSERT INTO posts (title, brief, content, readtime, category, uid) VALUES(?, ?, ?, ?, ?, ?)', [
+            req.body.title,
+            req.body.brief,
+            req.body.content,
+            0,
+            categoryId,
+            userId
+          ], (err, results, field) => {
+          if (err) throw err
+
+          if (results.insertId) {
+            res.send({
+              status: 1
+            })
+          } else {
+            res.send({
+              status: 0
+            })
+          }
+
+          connection.release()
+        })
+      })
+    })
+    .catch(err => {
+      console.log(err)
     })
   }
 }

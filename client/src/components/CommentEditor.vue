@@ -17,7 +17,7 @@
         </div>
       </el-col>
     </el-row>
-    <el-button type="primary" class="submit-comment">提交</el-button>
+    <el-button type="primary" class="submit-comment">发布评论</el-button>
   </div>
 </template>
 

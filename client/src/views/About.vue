@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <p>没什么可说的T_T</p>
   </div>
 </template>
 

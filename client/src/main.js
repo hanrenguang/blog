@@ -9,6 +9,8 @@ import VueAxios from 'vue-axios'
 
 Vue.config.productionTip = false
 
+axios.defaults.withCredentials = true
+
 Vue.use(VueAxios, axios)
 
 new Vue({
