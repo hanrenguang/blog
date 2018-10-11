@@ -6,13 +6,14 @@ const app = express()
 
 const homeRouter = require('./routes/home.js')
 const postRouter = require('./routes/post.js')
-const klassRouter = require('./routes/klass.js')
+const klassRouter = require('./routes/class.js')
 const createPostRouter = require('./routes/createPost.js')
 const identifyRouter = require('./routes/identify.js')
+const commentRouter = require('./routes/comment.js')
 
 app.use(cors({
-  origin:['http://localhost:8080'],
-  methods:['GET','POST'],
+  origin: ['http://localhost:8080'],
+  methods: ['GET', 'POST'],
   credentials: true
 }))
 

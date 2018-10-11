@@ -103,14 +103,17 @@ export default {
         let key = keys.pop()
 
         if (!this.postForm[key].trim()) {
-          alert('err')
           return
         }
       }
 
       this.axios.post('http://localhost:3000/putPostInfo', this.postForm)
         .then(res => {
-          console.log(res.data)
+          if (res.data.status === 1) {
+            console.log(this)
+          } else {
+            console.log('server err')
+          }
         })
         .catch(err => {
           console.log(err)

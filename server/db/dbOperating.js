@@ -93,6 +93,32 @@ module.exports = {
       })
     })
   },
+  // create comment
+  createComment (req, res, next) {
+    pool.getConnection((err, connection) => {
+      if (err) throw err
+
+      connection.query('INSERT INTO comments (name, content, pid) VALUES(?, ?, ?)', [
+        req.body.name,
+        req.body.content,
+        req.body.pid
+      ], (err, results, field) => {
+        if (err) throw err
+
+        if (results.insertId) {
+          res.send({
+            status: 1
+          })
+        } else {
+          res.send({
+            status: 0
+          })
+        }
+
+        connection.release()
+      })
+    })
+  },
   // create post
   createPost (req, res, next) {
     let categoryId = void 0
@@ -151,7 +177,8 @@ module.exports = {
 
           if (results.insertId) {
             res.send({
-              status: 1
+              status: 1,
+              id: results.insertId
             })
           } else {
             res.send({
@@ -165,6 +192,36 @@ module.exports = {
     })
     .catch(err => {
       console.log(err)
+    })
+  },
+  // get all class
+  getAllCategory (req, res, next) {
+    pool.getConnection((err, connection) => {
+      if (err) throw err
+
+      connection.query('SELECT * FROM category', [], (err, results, field) => {
+        if (err) throw err
+
+        res.send(results)
+
+        connection.release()
+      })
+    })
+  },
+  // get post by cid
+  getPostByCid (req, res, next) {
+    const cid = parseInt(req.body.cid)
+
+    pool.getConnection((err, connection) => {
+      if (err) throw err
+
+      connection.query('SELECT * FROM posts WHERE category=?', [cid], (err, results, field) => {
+        if (err) throw err
+
+        res.send(results)
+
+        connection.release()
+      })
     })
   }
 }
