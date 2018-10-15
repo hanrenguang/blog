@@ -1,16 +1,21 @@
 <template>
   <div id="post">
-    {{ postInfo.content }}
-    <CommentEditor></CommentEditor>
+    <PostView :postInfo="postInfo"></PostView>
+    <CommentEditor :pid="postInfo.id"></CommentEditor>
     <template v-for="(comment, index) in comments">
       <CommentItem :comment="comment" :key="index"></CommentItem>
     </template>
   </div>
 </template>
 
+<style scoped lang="scss">
+
+</style>
+
 <script>
 import CommentEditor from '@/components/CommentEditor.vue'
 import CommentItem from '@/components/CommentItem.vue'
+import PostView from '@/components/PostView.vue'
 
 export default {
   name: 'Post',
@@ -39,7 +44,8 @@ export default {
   },
   components: {
     CommentEditor,
-    CommentItem
+    CommentItem,
+    PostView
   }
 }
 </script>

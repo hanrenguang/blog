@@ -53,10 +53,26 @@
 <script>
 export default {
   name: 'CommentEditor',
+  props: ['pid'],
   data () {
     return {
       name: '',
       comment: ''
+    }
+  },
+  methods: {
+    submitComment () {
+      if (!this.name || !this.comment) return
+
+      this.axios.post('http://localhost:3000/createComment', {
+        name: this.name,
+        content: this.comment,
+        pid: this.pid
+      }).then(res => {
+        console.log(res.data)
+      }).catch(err => {
+        console.log(err)
+      })
     }
   }
 }
