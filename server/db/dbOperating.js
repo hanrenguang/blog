@@ -67,16 +67,32 @@ module.exports = {
   },
   // get post detail
   getPostDetail (req, res, next) {
-    pool.getConnection((err, connection) => {
-      if (err) throw err
-
-      connection.query('SELECT * FROM posts WHERE id=?', [req.body.postId], (err, results, field) => {
+    new Promise((resolve, reject) => {
+      pool.getConnection((err, connection) => {
         if (err) throw err
 
-        res.send(results[0])
+        connection.query('SELECT * FROM posts WHERE id=?', [req.body.postId], (err, results, field) => {
+          if (err) throw err
 
-        connection.release()
+          connection.release()
+          resolve(results[0])
+        })
       })
+    }).then(data => {
+      pool.getConnection((err, connection) => {
+        if (err) throw err
+
+        connection.query('SELECT username FROM user WHERE id=?', [data.uid], (err, results, field) => {
+          if (err) throw err
+
+          data.user = results[0].username
+
+          res.send(data)
+          connection.release()
+        })
+      })
+    }).catch(err => {
+      console.log(err)
     })
   },
   // get comment detail
