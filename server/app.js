@@ -31,6 +31,7 @@ app.use(postRouter)
 app.use(klassRouter)
 app.use(createPostRouter)
 app.use(identifyRouter)
+app.use(commentRouter)
 
 let server = app.listen(3000, function () {
   let host = server.address().address
