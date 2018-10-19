@@ -26,6 +26,16 @@ export default {
     }
   },
   created () {
+    this.axios.post('http://localhost:3000/addReadTime', {
+      postId: this.$route.params.id
+    }).then((res) => {
+      if (res.data.status === 1) {
+        this.postInfo.readtime = res.data.readtime
+      }
+    }).catch((err) => {
+      console.log(err)
+    })
+
     this.axios.post('http://localhost:3000/getPostDetail', {
       postId: this.$route.params.id
     }).then((res) => {

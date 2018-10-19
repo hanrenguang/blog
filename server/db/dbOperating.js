@@ -109,6 +109,37 @@ module.exports = {
       })
     })
   },
+  // add readTime
+  addReadTime (req, res, next) {
+    new Promise((resolve, reject) => {
+      pool.getConnection((err, connection) => {
+        if (err) throw err
+
+        connection.query('SELECT readtime FROM posts WHERE id=?', [req.body.postId], (err, results, field) => {
+          if (err) throw err
+
+          connection.release()
+          resolve(results[0])
+        })
+      })
+    }).then(data => {
+      pool.getConnection((err, connection) => {
+        if (err) throw err
+
+        connection.query(`UPDATE posts SET readtime=${++data.readtime} WHERE id=?`, [req.body.postId], (err, results, field) => {
+          if (err) throw err
+
+          res.send({
+            status: 1,
+            readtime: data.readtime
+          })
+          connection.release()
+        })
+      })
+    }).catch(err => {
+      console.log(err)
+    })
+  },
   // create comment
   createComment (req, res, next) {
     pool.getConnection((err, connection) => {
