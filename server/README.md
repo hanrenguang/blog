@@ -1,4 +1,4 @@
-# blog-server
+# blog server
 
 ## Project setup
 ```bash
