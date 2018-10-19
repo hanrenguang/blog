@@ -1,7 +1,10 @@
 <template>
   <div id="post">
     <PostView :postInfo="postInfo"></PostView>
-    <CommentEditor :pid="postInfo.id"></CommentEditor>
+    <CommentEditor
+      :pid="postInfo.id"
+      @updateComment="addComment"
+    ></CommentEditor>
     <template v-for="(comment, index) in comments">
       <CommentItem :comment="comment" :key="index"></CommentItem>
     </template>
@@ -47,7 +50,7 @@ export default {
     this.axios.post('http://localhost:3000/getCommentDetail', {
       postId: this.$route.params.id
     }).then((res) => {
-      this.comments = res.data
+      this.comments = res.data.reverse()
     }).catch((err) => {
       console.log(err)
     })
@@ -56,6 +59,11 @@ export default {
     CommentEditor,
     CommentItem,
     PostView
+  },
+  methods: {
+    addComment (commentItem) {
+      this.comments.unshift(commentItem)
+    }
   }
 }
 </script>

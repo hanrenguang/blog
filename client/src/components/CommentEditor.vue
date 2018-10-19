@@ -73,7 +73,20 @@ export default {
         content: this.comment,
         pid: this.pid
       }).then(res => {
-        console.log(res.data)
+        if (res.data.status === 1) {
+          this.$emit('updateComment', {
+            id: res.data.id,
+            name: this.name,
+            content: this.comment,
+            pid: this.pid,
+            submittime: new Date()
+          })
+
+          this.name = ''
+          this.comment = ''
+        } else {
+          console.log('comment submit failed')
+        }
       }).catch(err => {
         console.log(err)
       })

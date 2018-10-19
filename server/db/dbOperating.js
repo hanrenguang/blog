@@ -154,7 +154,8 @@ module.exports = {
 
         if (results.insertId) {
           res.send({
-            status: 1
+            status: 1,
+            id: results.insertId
           })
         } else {
           res.send({
