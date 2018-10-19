@@ -20,7 +20,7 @@
     <el-button
       type="primary"
       class="submit-comment"
-      @click="submitComment"  
+      @click="submitComment"
     >发布评论</el-button>
   </div>
 </template>
