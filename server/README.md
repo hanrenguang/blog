@@ -6,6 +6,7 @@
 ## Project setup
 ```bash
 npm install
+npm i nodemon -g
 ```
 
 ## Listen
